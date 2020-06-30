@@ -1,0 +1,159 @@
+﻿@page
+@model PublicTalkSchedule.Pages.SpeakerTalks.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+
+    <!-- *************** code used to display success message *************** -->
+    @if (Model.Message != null)
+    {
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aira-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @Model.Message
+        </div>
+    }
+
+    <!-- *************** code used to display error message *************** -->
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="alert alert alert-dismissible text-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aira-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @Model.ErrorMessage
+        </div>
+    }
+
+
+
+    <!-- banner - Speaker's talk list and add new speakers button -->
+    <h2 class="text-info py-2">Speaker's Talk List</h2>
+
+    <!-- card header: talk image and "back to speakers" button -->
+    <div class="container backgroundWhite">
+        <div class="card">
+            <div class="card-header bg-dark text-light ml-0 row container">
+                <div class="col-6">
+                    <img src="~/images/spkLight.jpg" width="40" />
+                </div>
+                <div class="col-6 text-right">
+                    <a asp-page="/Speakers/Index" class="btn btn-outline-info btn-sm">Back to Speakers</a>
+                </div>
+            </div>
+
+
+            <!-- card body: "add new talk button" and speaker's data (name; mobile phone number; congregation) -->
+            <div class="card-body">
+                <div class="row" style="padding-bottom:10px; padding-top:2px;">
+                    <div class="col-md-3">
+
+                        <!-- Add New Talk Button -->
+                        <p>
+                            <a asp-page="Create" asp-route-spkId="@Model.SpeakerTalkVM.SpeakerObj.Id" class="btn btn-info form-control">
+                                <i class="fas fa-plus"></i> &nbsp; Add Talk
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-md-6 offset-md-3">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <!-- Name -->
+                                @Html.LabelFor(m => m.SpeakerTalkVM, "Speaker:")
+                            </div>
+                            <div class="col-sm-8" style="padding-bottom:5px;">
+                                <input asp-for="SpeakerTalkVM.SpeakerObj.FullName" disabled class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <!-- Mobile phone -->
+                                <label asp-for="SpeakerTalkVM.SpeakerObj.spkMobilePhone"></label>
+                            </div>
+                            <div class="col-sm-8" style="padding-bottom:5px;">
+                                <input asp-for="SpeakerTalkVM.SpeakerObj.spkMobilePhone" disabled class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <!-- Congregation -->
+                                <label asp-for="SpeakerTalkVM.SpeakerObj.CongName"></label>
+                            </div>
+                            <div class="col-sm-8" style="padding-bottom:5px;">
+                                <input asp-for="SpeakerTalkVM.SpeakerObj.CongName" disabled class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- determine if the speaker has talkr(s), if not display a no talk message -->
+                <!-- if speaker has talk(s) display information regarding his talk(s) -->
+                @if (Model.SpeakerTalkVM.SpeakerTalks.Count() == 0)
+                {
+                    <p>
+                        No talks listed for this speaker! Please add a talk...
+                    </p>
+                }
+                else
+                {
+                    <table class="table table-striped border">
+                        <tr class="table-secondary">
+                            <th>
+                                @Html.DisplayNameFor(m => m.SpeakerTalkVM.SpeakerTalks.FirstOrDefault().TalkNum)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(m => m.SpeakerTalkVM.TalkObj.Title)
+                            </th>
+
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model.SpeakerTalkVM.SpeakerTalks)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(m => item.TalkNum)
+                                </td>
+
+                                <td>
+                                    @*@Html.DisplayFor(m => m.SpeakerTalkVM.SpeakerTalks)*@
+                                    @Html.DisplayFor(m => item.Title)
+                                </td>
+                                <td></td>
+                                <td class="text-right">
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-primary text-white" asp-page="Edit" asp-route-id="@item.Id" asp-route-spkId="@item.SpkNum">
+                                            <i class="fas fa-edit"></i>
+                                        </a> &nbsp;&nbsp;
+
+                                        @*<a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>*@
+
+                                        <!--  used to delete record (talk) from SpeakerTalk table  -->
+                                        <button asp-page-handler="Delete" asp-route-id="@item.Id" asp-route-spkId="@item.SpkNum"
+                                                onclick="return confirm('Are you sure you want to delete this talk?');"
+                                                class="btn btn-danger btn-sm">Delete
+                                        </button>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+
+                }
+            </div>
+
+        </div>
+
+    </div>
+</form>

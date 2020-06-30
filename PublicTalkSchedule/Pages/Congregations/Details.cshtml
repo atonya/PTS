@@ -1,0 +1,137 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Congregations.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<h3 class="text-info">Details Congregation</h3>
+
+<!-- build form that allows viewing of all congregation data -->
+<form method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="border backgroundwhite">
+        <div class="form-group row font-weight-bold">
+            <!-- Id (aka CongNum), CircuitNum -->
+            <div class="col-3 offset-3">
+                <label asp-for="Congregation.Id"></label>
+                <input asp-for="Congregation.Id" disabled class="form-control" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Congregation.CircuitNum"></label>
+                <input asp-for="Congregation.CircuitNum" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- CongName, Mtg Day, Mtg Time -->
+            <div class="col-6 offset-1">
+                <label asp-for="Congregation.CongName"></label>
+                <input asp-for="Congregation.CongName" disabled class="form-control" />
+            </div>
+
+            <!-- MtgDay -->
+            <div class="col-2">
+                <label asp-for="Congregation.MtgDay"></label>
+                <input asp-for="Congregation.MtgDay" disabled class="form-control" />
+                @*<select asp-for=Congregation.MtgDay asp-items="Html.GetEnumSelectList<DayOfWeek>()" class="form-control">
+            <option value="">Select DOW</option>
+        </select>*@
+            </div>
+
+            <!-- MtgTime -->
+            <div class="col-2">
+                <label asp-for="Congregation.MtgTime"></label>
+                <input asp-for="Congregation.MtgTime" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- khAddress, khCity, khPhone  -->
+            <div class="col-4 offset-1">
+                <label asp-for="Congregation.khAddress"></label>
+                <input asp-for="Congregation.khAddress" disabled class="form-control" />
+            </div>
+
+            <div class="col-3">
+                <label asp-for="Congregation.khCity"></label>
+                <input asp-for="Congregation.khCity" disabled class="form-control" />
+            </div>
+
+            <div class="col-3">
+                <label asp-for="Congregation.khPhone"></label>
+                <input asp-for="Congregation.khPhone" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- tc_Lastname, tc_FirstName -->
+            <div class="col-5 offset-1">
+                <label asp-for="Congregation.tcLastName"></label>
+                <input asp-for="Congregation.tcLastName" disabled class="form-control" />
+                <!-- <span asp-validation-for="Congregation.tcLastName" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+
+            <div class="col-5">
+                <label asp-for="Congregation.tcFirstName"></label>
+                <input asp-for="Congregation.tcFirstName" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- tcMobilePgone, tcHomePhone, tcEmail -->
+            <div class="col-3 offset-1">
+                <label asp-for="Congregation.tcMobilePhone"></label>
+                <input asp-for="Congregation.tcMobilePhone" disabled asp-format="{0: (###) ###-####}" class="form-control" />
+            </div>
+
+            <div class="col-3">
+                <label asp-for="Congregation.tcHomePhone"></label>
+                <input asp-for="Congregation.tcHomePhone" disabled class="form-control" />
+            </div>
+
+            <div class="col-4">
+                <label asp-for="Congregation.tcEmail"></label>
+                <input asp-for="Congregation.tcEmail" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- cobe_LastName -->
+            <div class="col-5 offset-1">
+                <label asp-for="Congregation.cobeLastName"></label>
+                <input asp-for="Congregation.cobeLastName" disabled class="form-control" />
+            </div>
+
+            <div class="col-5">
+                <label asp-for="Congregation.cobeFirstName"></label>
+                <input asp-for="Congregation.cobeFirstName" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- cobeMobilePhone, cobeHomePhone  -->
+            <div class="col-3 offset-3">
+                <label asp-for="Congregation.cobeMobilePhone"></label>
+                <input asp-for="Congregation.cobeMobilePhone" disabled class="form-control" />
+            </div>
+
+            <div class="col-3">
+                <label asp-for="Congregation.cobeHomePhone"></label>
+                <input asp-for="Congregation.cobeHomePhone" disabled class="form-control" />
+            </div>
+        </div>
+
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-3">
+                <partial name="_DetailsEditAndBackToListButton" />
+            </div>
+        </div>
+
+    </div>
+</form>

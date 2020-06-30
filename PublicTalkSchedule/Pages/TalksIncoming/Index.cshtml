@@ -1,0 +1,151 @@
+﻿@page
+@model PublicTalkSchedule.Pages.TalksIncoming.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+<!-- *************** code used to display error message *************** -->
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.ErrorMessage
+    </div>
+}
+
+
+
+<!-- ******************************************************************** -->
+<!-- banner and Create New Talk button  -->
+@*<form method="get" asp-page="Index">*@
+<form method="post">
+    <!-- banner for incoming talk schedule  -->
+    <div class="row">
+        <div class="col-6">
+            <h3 class="text-info">Incoming Talk Schedule</h3>
+        </div>
+    </div>
+
+
+    <!--  *************** display date range selection criteria and search by filled, open or all *************** -->
+
+    <div class="border backgroundwhite">
+        <!-- setup search container for filter options (start date, end date, all, filled and open) and search button-->
+        <div style="height:75px;" class="container border border-secondary">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+
+                        <!-- blank column then start date and end date filters -->
+                        <div class="col-1"></div>
+                        <div class="col-5" style="padding-top:10px">
+                            <div>
+                                <r>
+                                    Start Date: &nbsp;  <input type="date" asp-for="StartDate" style="width:145px" />
+                                </r><br />
+                                <r>
+                                     End  Date: &nbsp; &nbsp;  <input type="date" asp-for="EndDate" style="width:145px" />
+                                </r>
+                            </div>
+                        </div>
+
+                        <!-- blank column then all, filled and open schedule dates filters -->
+                        <div class="col-4">
+                            @foreach (var option in Model.Options)
+                            {
+                                <input type="radio" asp-for="Option" value="@option" />@option
+                                <span>Dates &nbsp;  </span><br />
+                            }
+                        </div>
+
+                        <div class="col-1" style="padding-top:20px">
+                            <!-- requery button -->
+                            <button type="submit" asp-page-handler="Requery" runat="server"
+                                    class="form-control btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Set background, create column labels and detail table -->
+    <div>
+        <table class="table table-striped border" height="40">
+            <tr class="table-secondary">
+                <th>
+                    @Html.DisplayNameFor(m => m.SchedIncomingVM.ScheduleInObj.DOT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.SchedIncomingVM.ScheduleInObj.SpkTalkNum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.SchedIncomingVM.ScheduleInObj.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.SchedIncomingVM.ScheduleInObj.SpeakerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.SchedIncomingVM.ScheduleInObj.SpkCongName)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <!-- *************** display record detail ***************-->
+            @foreach (var item in Model.ScheduleIn)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.DOT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.SpkTalkNum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.SpeakerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.SpkCongName)
+                    </td>
+                    <td></td>
+
+                    <!--display Edit and Delete buttons-->
+                    <td class="text-right">
+                        <a class="btn btn-primary text-white" asp-page="Edit" asp-route-transId="@item.Id" asp-route-congId="@item.SpkCongNum"
+                           asp-route-spkId="@item.SpkNum" asp-route-talkId="@item.SpkTalkNum">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        @*<a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>*@
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</form>

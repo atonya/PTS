@@ -1,0 +1,238 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Talks.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+<!-- *************** code used to display error message *************** -->
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.ErrorMessage
+    </div>
+}
+
+
+
+
+
+
+<!-- ******************************************************************** -->
+<!-- banner and Create New Talk button  -->
+
+
+<form method="get" asp-page="Index">
+    <!-- banner and Create (add) New Talk button  -->
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Talk List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Create" asp-area="" class="btn btn-info">
+                <i class="fas fa-plus"></i>&nbsp; Add New Talk
+            </a>
+        </div>
+    </div>
+
+    <!-- display search boxes and button -->
+    <div class="border backgroundwhite">
+        <!-- setup search texboxes(talknum, title and catnum) and search button-->
+        <div style="height:60px;" class="container border border-secondary">
+            <div class="row">
+                <div class="col-11">
+                    <div class="row" style="padding-top:10px">
+                        <div class="col-3">
+                            @Html.Editor("searchId", new { htmlAttributes = new { @class = "form-control", placeholder = "Talk#..." } })
+                        </div>                     
+                        <div class="col-6">
+                            @Html.Editor("searchTitle", new { htmlAttributes = new { @class = "form-control", placeholder = "Title..." } })
+                        </div>
+                        <div class="col-3">
+                            @Html.Editor("searchCatNum", new { htmlAttributes = new { @class = "form-control", placeholder = "Category..." } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="row" style="padding-top:10px; padding-right:15px;">
+                        <button type="submit" name="submit" value="Search" class="btn btn-info form-control">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Set background, create Table and column labels -->
+        <br />
+        <div>
+            <table class="table table-striped border" height="50">
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(m => m.TalkListVM.TalkListList[0].Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.TalkListVM.TalkListList[0].Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.TalkListVM.TalkListList[0].CatDescription)
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                <!-- display record detail -->
+                @foreach (var item in Model.TalkListVM.TalkListList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.CatDescription)
+                        </td>
+                        <td></td>
+
+                        <!-- display Edit and Delete buttons -->
+                        @*<td>
+                                <a asp-page="../cars/Index" asp-route-userId="@item.Id" style="text-decoration:none;">
+                                    <img src="~/images/car.png" width="40" /> &nbsp; View Cars
+                                </a>
+                            </td>*@
+                        <td class="text-right">
+                            <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id" asp-route-CatDescription="@item.CatDescription">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                <!-- display pagination page numbers-->
+                <tr>
+                    <td colspan="5" class="text-right">
+                        <div page-model="@Model.TalkListVM.PagingInfo" asp-action="Index" page-class="btn border"
+                             page-class-normal="btn btn-light" page-class-selected="btn btn-info active" class="btn-group">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="border backgroundWhite">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="text-info">Talk List</h3>
+            </div>
+            <div class="col-6 text-right">
+                <a asp-page="Create" class="btn btn-info">
+                    <i class="fas fa-plus"></i>&nbsp; Create New
+                </a>
+            </div>
+        </div>
+
+
+        <div>
+            @if (Model.TalkList.Count < 1)
+            {
+                <p>No talks exists. Please add a new talk...</p>
+            }
+            else
+            {
+                <!-- display lables and values for table properties -->
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            @Html.DisplayNameFor(m => m.TalkList[0].Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.TalkList[0].Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.TalkList[0].CatNum)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.TalkList)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.CatNum)
+                            </td>
+
+                            <!-- three buttons -->
+                            <td class="text-right" style="width:150px;">
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+
+                                    <!-- the Detail page is not needed for this table
+                                    <a class="btn btn-success text-white" asp-page="Details" asp-route-Id="@item.Id">
+                                        <i class="far fa-list-alt"></i>
+                                    </a>
+                                    -->
+
+                                    <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+
+
+    </div>*@
+
+

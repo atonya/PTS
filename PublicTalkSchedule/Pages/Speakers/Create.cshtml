@@ -1,0 +1,143 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Speakers.CreateModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+
+<!-- ****************************** Create Speaker Banner ****************************** -->
+<br />
+<h3 class="text-info">Add a Speaker</h3>
+<br />
+
+
+
+<!-- build form that allows creating new record-->
+<!-- display lables-->
+<form method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="border backgroundwhite">
+        @*<div class="form-group row"> REMOVE THIS BLOCK OF CODE
+             Id (aka SpkNum) field 
+            <div class="col-2">
+                <label asp-for="SpeakerCongregationVM.SpkList.SpkNum"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="SpeakerCongregationVM.SpkList.SpkNum" class="form-control" />
+            </div>
+            <span asp-validation-for="SpeakerCongregationVM.SpkList.SpkNum" class="text-danger"></span>
+        </div>*@
+
+        <div class="form-group row">
+            <!-- Speaker's LastName field -->
+            <div class="col-2">
+                <label asp-for="SpeakerCongregationVM.SpkList.spkLastName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="SpeakerCongregationVM.SpkList.spkLastName" class="form-control" />
+            </div>
+            <span asp-validation-for="SpeakerCongregationVM.SpkList.spkLastName" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <!-- Speaker's First Name field -->
+            <div class="col-2">
+                <label asp-for="SpeakerCongregationVM.SpkList.spkFirstName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="SpeakerCongregationVM.SpkList.spkFirstName" class="form-control" />
+            </div>
+            <span asp-validation-for="SpeakerCongregationVM.SpkList.spkFirstName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <!-- Elder/Ministerial Servant field -->
+            <div class="col-2">
+                <label asp-for="SpeakerCongregationVM.SpkList.EldMs"></label>
+            </div>
+            <div class="col-5">
+                <Select name="AppointedAs">
+                    <option value=""></option>
+                    <option value="Elder">&nbsp;Elder&nbsp;</option>
+                    <option value="Servant">&nbsp;Servant&nbsp;    </option>
+                </Select>
+            </div>
+            <!-- <span asp-validation-for="SpeakerCongregationVM.SpkList.EldMs" class="text-danger"></span>  validation not required -->
+        </div>
+
+        <div class="form-group row">
+            <!-- Spk Mobile Phone field -->
+            <div class="col-2">
+                <label asp-for="SpeakerCongregationVM.SpkList.spkMobilePhone"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="SpeakerCongregationVM.SpkList.spkMobilePhone" class="form-control" , placeholder=" Valid Format: (###) ###-#### " />
+            </div>
+            <span asp-validation-for="SpeakerCongregationVM.SpkList.spkMobilePhone" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <!-- Spk Home Phone field -->
+            <div class="col-2">
+                <label asp-for="SpeakerCongregationVM.SpkList.spkHomePhone"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="SpeakerCongregationVM.SpkList.spkHomePhone" class="form-control" , placeholder=" Valid Format: (###) ###-#### " />
+            </div>
+            <span asp-validation-for="SpeakerCongregationVM.SpkList.spkHomePhone" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <!-- Spk Email field -->
+            <div class="col-2">
+                <label asp-for="SpeakerCongregationVM.SpkList.spkEmail"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="SpeakerCongregationVM.SpkList.spkEmail" class="form-control" />
+            </div>
+            <!--<span asp-validation-for="Speaker.spkEmail" class="text-danger"></span>  Validation Not Required  -->
+        </div>
+
+        <div class="form-group row">
+            <!-- Spk Congregation and CongNum (aka CongId) fields -->
+            <div class="col-2">
+                <label asp-for="SpeakerCongregationVM.SpkList.CongName"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="SelectedCongId" asp-items="@Model.CongItems" class="form-control">
+                    <option value="">Required Field</option>
+                </select>
+            </div>
+                <span asp-validation-for="SelectedCongId" class="text-danger"></span>
+            
+        </div>
+ 
+
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_CreateAndBackToListButton" />
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

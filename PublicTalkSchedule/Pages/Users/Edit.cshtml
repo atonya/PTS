@@ -1,0 +1,69 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Users.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<!-- ****************************** Edit User Banner ****************************** -->
+<br />
+<h2 class="text-info">Edit User</h2>
+<br />
+
+<!-- build form that allows editing of users -->
+<form method="post">
+    <div class=" border  backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <!-- hidden columns that are not updated. Id column is usually included here-->
+        <input asp-for="ApplicationUser.Id" hidden />
+        <input asp-for="ApplicationUser.Email" hidden />
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label asp-for="ApplicationUser.Name" class="text-info"></label>
+                </div>
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.Name" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="ApplicationUser.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label asp-for="ApplicationUser.Email" class="text-info"></label>
+                </div>
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.Email" disabled class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="ApplicationUser.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label asp-for="ApplicationUser.SpkNum" class="text-info"></label>
+                </div>
+                <div class="col-sm-5">
+                    <input asp-for="ApplicationUser.SpkNum" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="ApplicationUser.SpkNum" class="text-danger"></span>
+        </div>
+
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_EditAndBackToListButton" />
+            </div>
+        </div>
+
+    </div>
+
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

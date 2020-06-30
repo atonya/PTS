@@ -1,0 +1,121 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Users.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+<form method="get" asp-page="Index">
+    <br />
+    <!-- banner - Users list and add new users button -->
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Users List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="/Account/Register" asp-area="Identity" class="btn btn-info">
+                <i class="fas fa-plus"></i>&nbsp; Create New User
+            </a>
+        </div>
+    </div>
+
+    <!-- display search boxes (by user name) and button -->
+    <div class="border backgroundWhite">
+        <div style="height:60px;" class="container border border-secondary">
+            <div class="row">
+                <div class="col-11">
+                    <div class="row" style="padding-top:10px">
+                        <div class="col-5 offset-3">
+                            @Html.Editor("searchName", new { htmlAttributes = new { @class = "form-control", placeholder = "Name..." } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="row" style="padding-top:10px; padding-right:15px;">
+                        <button type="submit" name="submit" value="Search" class="btn btn-info form-control">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Set background, create Table and column labels -->
+        <br />
+        <div>
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(m => m.UsersListVM.ApplicationUserList[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.UsersListVM.ApplicationUserList[0].Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.UsersListVM.ApplicationUserList[0].SpkNum)
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                <!-- display record detail -->
+                @foreach (var item in Model.UsersListVM.ApplicationUserList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.SpkNum)
+                        </td>
+                        <td></td>
+
+                        <!-- display Edit and Delete buttons -->
+                        @*<td>
+                                <a asp-page="../cars/Index" asp-route-userId="@item.Id" style="text-decoration:none;">
+                                    <img src="~/images/car.png" width="40" /> &nbsp; View Cars
+                                </a>
+                            </td>*@
+                        <td>
+                            <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="5" class="text-right">
+                        <div page-model="@Model.UsersListVM.PagingInfo" asp-action="Index" page-class="btn border"
+                             page-class-normal="btn btn-light" page-class-selected="btn btn-info active" class="btn-group">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+
+    </div>
+
+</form>

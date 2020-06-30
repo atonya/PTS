@@ -1,0 +1,112 @@
+﻿@page
+@model PublicTalkSchedule.Pages.TalksIncoming.CreateModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+<!-- *************** code used to display error message *************** -->
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.ErrorMessage
+    </div>
+}
+
+
+
+<!-- ****************************** Create (initilize) Incoming New Year Schedule Banner ****************************** -->
+<br />
+<h4 class="text-info"> &nbsp; &nbsp; &nbsp; &nbsp; Initilize New Calendar Year for Incomming Talk Schedule</h4>
+<br />
+
+<form method="post">
+
+    <div class="border backgroundwhite">
+
+        <!-- setup border, texbox (for new calendar year) and submit button-->
+        <div style="height:110px;" class="container border border-secondary">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row" style="padding-top:10px">
+                        <div class="col-1"></div>
+                        <!-- textbox NewYear-->
+                        <div class="col-4 text-right">
+                            <h4 id="lblYear" class="text-info pl-1 pt-1 pb-1">Enter New Year:</h4>
+                        </div>
+                        <div class="col-2">
+                            <input type="text" asp-for="txtYear" runat="server" id="txtYear"
+                                   class="text-black pl-1 pt-1 pb-1" style="width:90px; text-align:center" />
+                        </div>
+                        <span asp-validation-for="txtYear" class="text-danger"></span>
+
+                        <div class="col-1"></div>
+                        <div class="col-2 text-right">
+                            <!-- submit button -->
+                            <button type="submit" asp-page-handler="InitializeYear" runat="server"
+                                    class="form-control btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <!-- *************** if txtYear is null, then hide txtSunday and txtLabel ***************-->
+                <!-- display first sunday date for new calendar year with confirm button -->
+                @if (!String.IsNullOrWhiteSpace(Model.txtYear))
+                {
+                    <div class="col-12">
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-2"></div>
+                            <!--txtSunay-->
+                            <div class="col-11 offset-2" style="padding-bottom:10px" text-align:center>
+                                <input type="text" asp-for="txtSunday" runat="server" id="txtSunday"
+                                       class="text-black pl-1 pt-1 pb-1" style="width:100px" ; text-align:center />
+                                <h10 id="lblSunday" class="text-info pl-1 pt-5 pb-1">is the FIRST Sunday of the year. If this is correct, click Create</h10>
+                            </div>
+
+                            <!--lblSunday-->
+                            @*<div class="col-8">
+                                    <h10 id="lblSunday" class="text-info pl-1 pt-5 pb-1">is the FIRST Sunday the year. If this is correct, click Continue</h10>
+                                </div>*@
+                        </div>
+
+                    </div>
+                }
+                <!-- ************************* LAST LINE OF HIDEN IV SECTION ***************-->
+
+            </div>
+        </div>
+
+        <br />
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-3">
+                <partial name="_CreateAndBackToListButton" />
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,127 @@
+﻿@page
+@model PublicTalkSchedule.Pages.SpeakerTalks.CreateModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+
+
+
+<!-- ******************************************************************** -->
+<!-- ******************** banner and Create New Talk button ******************** -->
+<div class="container pt-2 pb-1 row">
+    <div class="col-6">
+        <h2 class="text-info py-2">Add Talks to Speaker's List</h2>
+    </div>
+    <div class="col-3 offset-3 text-right py-2">
+        <a asp-page="Index" asp-route-spkId="@Model.SpeakerTalkVM.SpeakerObj.Id" class="btn btn-outline-info form-control">Back to Talk List</a>
+    </div>
+</div>
+
+
+
+<!-- ******************** container, speaker's name, talk #, add and save ******************** -->
+<div class="card-body">
+    <form method="post" style="width:100%">
+        <div class="container">
+            <input hidden asp-for="SpeakerTalkVM.SpeakerObj.Id" />
+
+            <div class="border rounded p-2">
+                <div class="row">
+                    <div class="col-3">
+                        <input asp-for="SpeakerTalkVM.SpeakerObj.FullName" disabled class="form-control" />
+                    </div>
+                    <div class="col-4 text-right">
+                        <h4 class="text-info pl-3 pt-2 pb-1">Enter a Talk #:</h4>
+                    </div>
+                    <div class="col-5 pb-1 pt-2">
+                        <div class="row">
+                            <div class="col-3">
+                                <select asp-for="SpeakerTalkVM.TalkObj.Id"
+                                        asp-items="@(new SelectList(Model.SpeakerTalkVM.TalkNumList,"Id","Id"))"
+                                        class="form-control"></select>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-3 text-right">
+                                <button type="submit" asp-page-handler="AddToCart" class="form-control btn btn-primary">Add</button>
+                            </div>
+                            <div class="col-3 text-right">
+                                <button class="btn btn-success form-control" asp-route-spkId="@Model.SpeakerTalkVM.SpeakerObj.Id" onclick="return validateInput()">Save</button>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <!-- ******************** display selected talks ******************** -->
+            <div class="border container rounded p-2">
+                <h3 class="text-info pb-2">Talks to Be Added to Speaker's List:</h3>
+                @if (Model.SpeakerTalkVM.TalkShoppingCart.Count == 0)
+                {
+                    <p>
+                        Please Add and Save Talks Assinged to This Speaker..
+                    </p>
+                }
+                else
+                {
+                    <div class="row mt-3">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <table class="table table-striped border">
+                                <tr class="table-secondary">
+                                    <th>
+                                        @*@Html.DisplayNameFor(m => Model.SpeakerTalkVM.TalkNumList.FirstOrDefault().Id)*@
+                                        @Html.DisplayNameFor(m => Model.SpeakerTalkVM.TalkObj.Id)
+                                    </th>
+                                    <th>
+                                        @*@Html.DisplayNameFor(m => Model.SpeakerTalkVM.TalkNumList.FirstOrDefault().Title)*@
+                                        @Html.DisplayNameFor(m => Model.SpeakerTalkVM.TalkObj.Title)
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+                                @foreach (var item in Model.SpeakerTalkVM.TalkShoppingCart)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => item.TalkList.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.TalkList.Title)
+                                        </td>
+                                        <td>
+                                            <button type="submit" asp-page-handler="RemoveFromCart" asp-route-id="@item.Id" asp-route-spkId="@item.SpkId" class="btn btn-danger form-control">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+</div>
+
+

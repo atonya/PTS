@@ -1,0 +1,96 @@
+﻿@page
+@model PublicTalkSchedule.LoadModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "UploadFile";
+}
+
+@*<form method="post" enctype="multipart/form-data">
+        <input type="file" asp-for="Upload" />
+        <input type="submit" />
+    </form>*@
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+<!-- ****************************** Import Talks Banner ****************************** -->
+
+<form enctype="multipart/form-data" method="post">
+
+    <!-- banner to load data files (congregation, talks, speakers and speaker's talks) -->
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Update Data Files</h2>
+        </div>
+    </div>
+
+
+    <!--*************** Select the data type to be uploaded ***************-->
+    <div class="border backgroundwhite">
+        <!-- setup container (border) for data type options (congregation, talks, speakers and speaker's talks -->
+        <div style="height:60px;" class="container border border-secondary">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <!-- blank column then all, filled and open schedule dates filters -->
+                        @*<div class="col-2"></div>*@
+                        <div class="col-12" style="padding-top:12px; text-align:center">
+                            @foreach (var option in Model.Options)
+                            {
+                                <input type="radio" asp-for="Option" value="@option" required />@option
+                                <span> &nbsp;   </span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--*************** Select the file to be uploaded ***************-->
+    <br /> <br />
+    <div class="form-group row">
+        <div class="row, col-12">
+            <div class="row">
+
+                <div class="col-1"></div>
+                <div class="col-8">
+                    Select File: &nbsp; <input asp-for="Upload" type="file" required />
+                    <span asp-validation-for="Upload"></span>
+                </div>
+
+                <div class="col-2">
+                    <button type="submit" asp-page-handler="Upload" runat="server"
+                            class="form-control btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+            </div>
+            </div>
+    </div>
+
+
+</form>
+
+
+<p class="result">
+    @Model.Result
+</p>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

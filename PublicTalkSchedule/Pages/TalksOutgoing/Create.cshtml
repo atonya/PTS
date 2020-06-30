@@ -1,0 +1,116 @@
+﻿@page
+@model PublicTalkSchedule.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+<!-- *************** code used to display error message *************** -->
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.ErrorMessage
+    </div>
+}
+
+
+<!-- ****************************** Create Outgoing Talk Assignment ****************************** -->
+<br />
+<h3 class="text-info">Create an Outgoing Talk Assignment</h3>
+<br />
+
+<!-- build form that allows creating outgoing talk assignment -->
+<form asp-action="Index" method="post" class="form-horizonal" role="form">
+    <div class="border backgroundwhite">
+        <!-- hidden column that is not updated. ID column is usually included here
+            <input type="hidden" asp-for="SchedOutgoingVM.ScheduleOutObj.Id" />
+            <input type="hidden" asp-for="SchedOutgoingVM.ScheduleOutObj.DOT" /> -->
+
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ScheduleOut.DOT"></label>
+            </div>
+            <div class="col-3">
+                <!-- the Id (aka talknum) can be seen but not edited -->
+                <input asp-for="ScheduleOut.DOT" class="form-control" />
+                <!-- <input type="date" asp-for="TalkDate" /> -->
+            </div>
+        </div>
+
+        <!-- ******** Speaker ********** -->
+        <div class="form-group row">
+            <!-- Speaker name fields -->
+            <div class="col-2">
+                <label asp-for="ScheduleOut.SpkNum"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="ScheduleOut.SpkNum" class="form-control"
+                        asp-items=ViewBag.SpkID>
+                    <option value="">Select Speaker</option>
+                </select>
+                <!-- <span asp-validation-for="SpeakerCongregationVM.SpkList.SpkNum" class="text-danger"></span> -->
+                <span sasp-validation-for="ScheduleOut.SpkNum" class="text-danger"></span>
+            </div>
+
+            <div class="col-1"></div>
+            <div class="col-4 text-sm-left">
+                <p>
+                    <input type="submit" value="Filter - Speaker" asp-page-handler="GetSpkNum" asp-route-transId="transId"
+                           class="btn-primary text-sm-center" style="width:160px">
+                </p>
+            </div>
+
+        </div>
+
+        <!-- ********** Talk ********** -->
+        <div class="form-group row">
+            <!-- Talk name fields -->
+            <div class="col-2">
+                <label asp-for="ScheduleOut.SpkTalkNum"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="ScheduleOut.SpkTalkNum" class="form-control" style="width:375px; font-size:x-small"
+                        asp-items=ViewBag.TalkId>
+                    <option value="">Select Talk #</option>
+                </select>
+            </div>
+        </div>
+
+
+        <!-- ********** Congregation ********** -->
+        <div class="form-group row">
+            <!-- Spk Congregation and CongNum (aka CongId) fields -->
+            <div class="col-2">
+                <label asp-for="ScheduleOut.hostCongNum"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="ScheduleOut.hostCongNum" class="form-control"
+                        asp-items=ViewBag.CongId>
+                    <option value="">Select Congregation</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_CreateSchedOutAndBackToListButton" />
+            </div>
+        </div>
+
+    </div>
+</form>

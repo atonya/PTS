@@ -1,0 +1,148 @@
+﻿@page
+@model PublicTalkSchedule.Pages.TalksOutgoing.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+<!-- *************** code used to display error message *************** -->
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.ErrorMessage
+    </div>
+}
+
+
+
+<!-- ******************************************************************** -->
+<!-- banner and Create New Talk button  -->
+@*<form method="get" asp-page="Index">*@
+<form method="post">
+    <!-- banner for outgoing talk schedule  -->
+    <div class="row">
+        <div class="col-6">
+            <h3 class="text-info">Outgoing Talk Schedule</h3>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Create" asp-area="" class="btn btn-info">
+                <i class="fas fa-plus"></i>&nbsp; Schedule Outgoing Talk
+            </a>
+        </div>
+    </div>
+
+    <!--search by speaker.  setup search by speaker name selectlist  -->
+    <div style="height:60px;" class="container border border-secondary">
+        <div class="row">
+            <div class="col-11">
+                <div class="row" style="padding-top:10px">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-5">
+                        <!-- search by speaker name -->
+                        <select asp-for="searchSpkName" asp-items="Model.SpkName" class="form-control">
+                            <option value="">Filter by Speaker</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- filter button (query button -->
+            <div class="col-1">
+                <div class="row" style="padding-top:10px; padding-right:15px;" asp-route-spkId="Id">
+                    <button type="submit" name="submit" value="Filter" asp-page-handler="GetSpkInfo" class="btn btn-info form-control">
+                        <i class="fas fa-search"></i>
+                        <a asp-page="./Index"></a>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Set background, create column labels and detail table -->
+    <div>
+
+        @if (Model.ScheduleOut.Count() == 0)
+        {
+            <p>
+                This speaker has not been shceduled in the past six weeks or in the next 6 months...
+            </p>
+        }
+        else
+        {
+
+            <table class="table table-striped border" height="40">
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(m => m.SchedOutgoingVM.ScheduleOutObj.DOT)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.SchedOutgoingVM.SpkTalkObj.Speaker)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.SchedOutgoingVM.ScheduleOutObj.SpkTalkNum)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.SchedOutgoingVM.CongObj.CongName)
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+
+                <!-- *************** display record detail ***************-->
+                @foreach (var item in Model.ScheduleOut)
+                {
+                    <tr>
+                        <td>                       
+                            @Html.DisplayFor(m => item.DOT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Speaker.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.SpkTalkNum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Congregation.CongName)
+                        </td>
+                        <td></td>
+
+                        <!--display Edit and Delete buttons-->
+                        <td class="text-right">
+                            <a class="btn btn-primary text-white" asp-page="Edit" asp-route-transId="@item.Id" asp-route-congName="m.SchedOutgoingVM.CongObj.CongName"
+                               asp-route-spkId="@item.SpkNum"  >
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btn btn-success text-white" asp-page="Details" asp-route-transId="@item.Id">
+                                <i class="far fa-list-alt"></i>
+                            </a>
+                            <a class="btn btn-danger text-white" asp-page="Delete" asp-route-transId="@item.Id">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </table>
+        }
+
+    </div>
+
+</form>

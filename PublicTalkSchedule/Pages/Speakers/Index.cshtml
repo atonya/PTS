@@ -1,0 +1,173 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Speakers.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+
+<!-- *************** code used to display error message *************** -->
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.ErrorMessage
+    </div>
+}
+
+
+
+
+<!-- ******************************************************************** -->
+<!-- banner and Create New Speaker button  -->
+
+
+    <form method="get" asp-page="Index">
+        <!-- banner and Create (add) New Speaker button  -->
+        <div class="row">
+            <div class="col-6">
+                <h2 class="text-info">Speaker List</h2>
+            </div>
+            <div class="col-6 text-right">
+                <a asp-page="Create" asp-area="" class="btn btn-info">
+                    <i class="fas fa-plus"></i>&nbsp; Add New Speaker
+                </a>
+            </div>
+        </div>
+
+
+        <!--search by speaker or by congregation -->
+        <!-- setup search texboxes(email, name and phone) and search button-->
+        <div style="height:60px;" class="container border border-secondary">
+            <div class="row">
+                <div class="col-11">
+                    <div class="row" style="padding-top:10px">
+                        <div class="col-1">
+                        </div>
+                        <div class="col-5">
+                            <!-- search by speaker name -->
+                            <select asp-for="searchSpkName" asp-items="Model.SpkId" class="form-control">
+                                <option value="">Search by Speaker</option>
+                            </select>
+                        </div>
+                        <div>
+                            OR
+                        </div>
+                        <div class="col-5">
+                            <!-- search by congregation name -->
+                            <select asp-for = "searchCongName" asp-items="Model.CongId" class="form-control">
+                                <option value="">Search by Congregation</option>
+                            </select>
+                            @*<span asp-validation-for="Congregation" class="text-danger"></span>*@
+                        </div>
+                        <div class="col-1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-1">
+                    <div class="row" style="padding-top:10px; padding-right:15px;" asp-route-spkId="Id">
+                        <button type="submit" name="submit" value="Search" class="btn btn-info form-control" >
+                            <i class="fas fa-search"></i> 
+                            <a asp-page="./Index"></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Set background, create Table and column labels -->
+        <div class="border backgroundwhite">
+                <div>
+                    <table class="table table-striped border" height="50">
+                        <tr class="table-secondary">
+
+                            <th>
+                                @Html.LabelFor(m => m.SpeakerVM, "Speaker:")
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(m => m.SpeakerVM.SpeakerList[0].spkMobilePhone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(m => m.SpeakerVM.SpeakerList[0].CongName)
+                            </th>
+                            <th>
+                                <!--@Html.DisplayNameFor(m => m.SpeakerVM.SpeakerList[0].EldMs)-->
+                                @Html.LabelFor(m => m.SpeakerVM, "Elder/Servant:")
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+                        <!-- display record detail -->
+                        @foreach (var item in Model.SpeakerVM.SpeakerList)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(m => item.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.spkMobilePhone)
+                                </td>
+                                <td>
+                                    <!-- @Html.DisplayFor(m => item.Congregation) -->
+                                    @Html.DisplayFor(m => item.CongName)
+                                </td>
+                                <td class="text-left">
+                                    @Html.DisplayFor(m => item.EldMs)
+                                </td>
+
+                                <!-- display speaker image,view Talks, Edit and Delete buttons -->
+                                <td colspan="1">
+                                    <a asp-page="../SpeakerTalks/Index" asp-route-spkId="@item.Id" style="text-decoration:none;">
+                                        <img src="~/images/speaker.png" width="40" /> &nbsp; View Talk Lists
+                                    </a>
+                                </td>
+
+                                <!-- display Edit and Delete buttons -->
+                                <td class="text-right">
+                                    <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-success text-white" asp-page="Details" asp-route-Id="@item.Id">
+                                        <i class="far fa-list-alt"></i>
+                                    </a>
+                                    <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        }
+
+                        <!-- display pagination page numbers-->
+                        <tr>
+                            <td></td>
+                            <td colspan="5" class="text-right">
+                                <div page-model="@Model.SpeakerVM.PagingInfo" asp-action="Index" page-class="btn border"
+                                     page-class-normal="btn btn-light" page-class-selected="btn btn-info active" class="btn-group">
+                                </div>
+                            </td>
+                        </tr>
+
+            </table>
+            </div>
+        </div>
+    </form>
+

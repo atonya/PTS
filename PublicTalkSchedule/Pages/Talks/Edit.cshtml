@@ -1,0 +1,70 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Talks.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<!-- ****************************** Edit Talk Banner ****************************** -->
+<br />
+<h3 class="text-info">Edit a Talk</h3>
+<br />
+
+<!-- build form that allows editing of talks -->
+<form method="post">
+    <div class="border backgroundwhite">
+        <!-- hidden column that is not updated. ID column is usually included here-->
+        <input type="hidden" asp-for="TalkList.Id" />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="TalkList.Id"></label>
+            </div>
+            <div class="col-5">
+                <!-- the Id (aka talknum) can be seen but not edited -->
+                <input asp-for="TalkList.Id" disabled class="form-control" />
+            </div>
+            <span asp-validation-for="TalkList.Id" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="TalkList.Title"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="TalkList.Title" class="form-control" />
+            </div>
+            <span asp-validation-for="TalkList.Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="TalkList.CatDescription"></label>
+            </div>
+            <div class="col-5">
+
+                <select asp-for="TalkList.CatDescription" class="form-control" asp-items="ViewBag.CatId">
+                    <option value="">Required Field</option>
+                </select>
+
+            </div>
+            <span asp-validation-for="SelectedCatId" class="text-danger"></span>
+        </div>
+
+
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_EditAndBackToListButton" />
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

@@ -1,0 +1,73 @@
+﻿@page
+@model PublicTalkSchedule.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<!-- ****************************** Delete Outgoing Talk Banner************************************** -->
+<h2 class="text-info">Delete Outgoing Talk Assignements </h2>
+<h6 class="text-danger">******* Delete cannot be undone *******</h6>
+<br />
+
+<!-- ******************************************************************** -->
+<!-- banner and Delete Outgoing Talk -->
+<form method="post">
+    <!-- hidden column that is not updated. ID column is usually included here-->
+    <!-- <input asp-for="Congregation.Id" hidden /> NOT HIDDEN FOR NOW -->
+
+    <div class="border backgroundwhite">
+        <!-- hidden column that is not updated. ID column is usually included here-->
+        <!-- <input type="hidden" asp-for="Congregation.Id" />  -->
+        <!-- dot fields -->
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ScheduleOut.DOT"></label><br />
+            </div>
+            <div class="col-3">
+                <input asp-for="ScheduleOut.DOT" disabled class="form-control" />
+            </div>
+        </div>
+
+        <!-- speaker name fields -->
+        <div class="form-group row">
+            <div class="col-2">
+                @Html.LabelFor(m => m.ScheduleOut, "Speaker:")
+            </div>
+            <div class="col-5">
+                <input asp-for="ScheduleOut.Speaker.FullName" disabled class="form-control" />
+            </div>
+        </div>
+
+        <!-- talk number fields -->
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ScheduleOut.SpkTalkNum"></label>
+            </div>
+            <div class="col-2">
+                <input asp-for="ScheduleOut.SpkTalkNum" disabled class="form-control" />
+            </div>
+            <div class="col-5">
+                <input asp-for="ScheduleOut.TalkList.Title" disabled class="form-control" />
+            </div>
+        </div>
+
+        <!-- host congregation fields -->
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ScheduleOut.hostCongNum"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ScheduleOut.Congregation.CongName" disabled class="form-control" />
+            </div>
+        </div>
+
+
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_DeleteAndBackToListButton" />
+            </div>
+        </div>
+
+    </div>
+</form>

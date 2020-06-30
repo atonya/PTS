@@ -1,0 +1,119 @@
+﻿@page
+@model RegisterModel
+@using PublicTalkSchedule.Utility
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2 class="text-info pt-1 pb-2">Create a new account</h2>
+
+<div class="row backgroundwhite border">
+    <div class="col-md-8">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Input.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Name" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Input.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Input.Email"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Email" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Input.Password"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Password" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Input.ConfirmPassword"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- next two controls visable to AdminEndUser only -->
+            @if (User.IsInRole(SD.AdminEndUser))
+            {
+                <!-- set SpkNum text box , used to filter for users data only -->
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-4">
+                            <label asp-for="Input.SpkNum"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Input.SpkNum" class="form-control" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- set option control which allows user type to be selected -->
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-4">
+                            <label asp-for="Role"></label>
+                        </div>
+                        <div class="col-8">
+                            @foreach (var option in Model.Roles)
+                            {
+                                <input type="radio" asp-for="Role" value="@option" />@option
+                                <span> &nbsp; &nbsp; &nbsp;   </span>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+            <!-- set registration button -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-8 offset-4">
+                        <button type="submit" class="btn btn-success form-control">Register</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

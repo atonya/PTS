@@ -1,0 +1,70 @@
+﻿@page
+@model PublicTalkSchedule.ExportModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "ExportFile";
+}
+
+
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+
+
+
+
+
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <!-- banner to export data tables (congregation, talks, speakers and speaker's talks) -->
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Export Data to Excel</h2>
+        </div>
+    </div>
+
+    <!--*************** Select the data table to be exported ***************-->
+    <div class="border backgroundwhite">
+        <!-- setup container (border) for data type options (congregation, talks, speakers and speaker's talks -->
+        <div style="height:60px;" class="container border border-secondary">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <!-- blank column then all, filled and open schedule dates filters -->
+                        @*<div class="col-2"></div>*@
+                        <div class="col-12" style="padding-top:12px; text-align:center">
+                            @foreach (var option in Model.Options)
+                            {
+                                <input type="radio" asp-for="Option" value="@option" required />@option
+                                <span> &nbsp;   </span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-8" style="padding-top:10px;">
+            <button type="submit" asp-page-handler="ExportExcel">Export to Excel</button>
+        </div>
+    </div>
+    <div id="divData"></div>
+</form>

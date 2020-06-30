@@ -1,0 +1,162 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Congregations.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+<!-- *************** code used to display error message *************** -->
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.ErrorMessage
+    </div>
+}
+
+
+
+<!-- ******************************************************************** -->
+<!-- banner and Create New Talk button  -->
+
+
+<form method="get" asp-page="Index">
+    <!-- banner and Create (add) New Congregation button  -->
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Congregation List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Create" asp-area="" class="btn btn-info">
+                <i class="fas fa-plus"></i>&nbsp; Add New Congregation
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class="border backgroundwhite">
+
+
+        <!-- setup search texboxes(email, name and phone) and search button-->
+        <div style="height:60px;" class="container border border-secondary">
+            <div class="row">
+                <div class="col-11">
+                    <div class="row" style="padding-top:10px">
+                        <div class="col-3">
+                        </div>
+                        <div class="col-6"> 
+                            @Html.Editor("searchCongName", new { htmlAttributes = new { @class = "form-control", placeholder = " Search by: Congregation Name..." } })
+                        </div>
+                        <div class="col-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="row" style="padding-top:10px; padding-right:15px;">
+                        <button type="submit" name="submit" value="Search" class="btn btn-info form-control">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Set background, create Table and column labels -->
+        <br />
+        <div>
+            <table class="table table-striped border" height="50">
+                <tr class="table-secondary">
+                    <th colspan="2"></th>            
+                    <th>
+                        @Html.DisplayNameFor(m => m.CongregationVM.CongList[0].CongName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.CongregationVM.CongList[0].MtgDay)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.CongregationVM.CongList[0].MtgTime)
+                    </th>
+                    <th>
+                        @*@Html.DisplayNameFor(m => m.CongregationVM.CongList[0].tcFirstName)*@
+                        @Html.LabelFor(m => m.CongregationVM, "Talk Coordinator:")
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(m => m.CongregationVM.CongList[0].tcLastName)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(m => m.CongregationVM.CongList[0].tcMobilePhone)
+                    </th>
+                    <th></th>
+                </tr>
+
+                <!-- display record detail -->
+                @foreach (var item in Model.CongregationVM.CongList)
+                {
+            <tr>
+                <td colspan="2"></td>
+                <td>
+                    @Html.DisplayFor(m => item.CongName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.MtgDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.MtgTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.tcFirstName) @Html.DisplayFor(m => item.tcLastName)
+                <td>
+                    @Html.DisplayFor(m => item.tcMobilePhone)
+                </td>
+
+                <!-- display Edit and Delete buttons -->
+                <td class="text-right">
+                    <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="btn btn-success text-white" asp-page="Details" asp-route-Id="@item.Id">
+                        <i class="far fa-list-alt"></i>
+                    </a>
+                    <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+                }
+
+                <!-- display pagination page numbers-->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="5" class="text-right">
+                        <div page-model="@Model.CongregationVM.PagingInfo" asp-action="Index" page-class="btn border"
+                             page-class-normal="btn btn-light" page-class-selected="btn btn-info active" class="btn-group">
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</form>
+

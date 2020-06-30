@@ -1,0 +1,109 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Speakers.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Delete Service Type</h2>
+<h6 class="text-danger">******* Delete cannot be undone *******</h6>
+
+<!-- ******************************************************************** -->
+<!-- banner and Delete Speakers -->
+<form method="post">
+    <div class=" border  backgroundWhite">
+        <!-- hidden column that is not updated. ID column is usually included here-->
+        <input type="hidden" asp-for="Speaker.Id" />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Speaker.Id"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Speaker.Id" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <!-- Speaker's LastName field -->
+            <div class="col-2">
+                <label asp-for="Speaker.spkLastName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Speaker.spkLastName" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <!-- Speaker's First Name field -->
+            <div class="col-2">
+                <label asp-for="Speaker.spkFirstName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Speaker.spkFirstName" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <!-- Elder/Ministerial Servant field -->
+            <div class="col-2">
+                <label asp-for="Speaker.EldMs"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Speaker.EldMs" disabled class="form-control" />
+            </div>
+            <!-- <span asp-validation-for="Speaker.EldMs" class="text-danger"></span>  validation not required -->
+        </div>
+
+        <div class="form-group row">
+            <!-- Spk Mobile Phone field -->
+            <div class="col-2">
+                <label asp-for="Speaker.spkMobilePhone"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Speaker.spkMobilePhone" disabled class="form-control" , placeholder=" Valid Format: (###) ###-#### " />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <!-- Spk Home Phone field -->
+            <div class="col-2">
+                <label asp-for="Speaker.spkHomePhone"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Speaker.spkHomePhone" disabled class="form-control" , placeholder=" Valid Format: (###) ###-#### " />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <!-- Spk Email field -->
+            <div class="col-2">
+                <label asp-for="Speaker.spkEmail"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Speaker.spkEmail" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <!-- Congname field -->
+            <div class="col-2">
+                <label asp-for="Speaker.CongName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Speaker.CongName" disabled class="form-control" />
+            </div>
+        </div>
+
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_DeleteAndBackToListButton" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

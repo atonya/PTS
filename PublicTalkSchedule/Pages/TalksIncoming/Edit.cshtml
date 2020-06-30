@@ -1,0 +1,132 @@
+﻿@page
+@model PublicTalkSchedule.Pages.TalksIncoming.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!-- ****************************** Edit Schedule Banner ****************************** -->
+<br />
+<h3 class="text-info">Edit Incomming Talk Schedule</h3>
+<br />
+
+
+<!-- build form that allows editing of talks -->
+<form asp-action="Index" method="post" class="form-horizonal" role="form">
+    <div class="border backgroundwhite">
+        <!-- hidden column that is not updated. ID column is usually included here-->
+        <input type="hidden" asp-for="SchedIncomingVM.ScheduleInObj.Id" />
+        <input type="hidden" asp-for="SchedIncomingVM.ScheduleInObj.DOT" />
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="SchedIncomingVM.ScheduleInObj.DOT"></label>
+            </div>
+            <div class="col-3">
+                <!-- the Id (aka talknum) can be seen but not edited -->
+                <input asp-for="SchedIncomingVM.ScheduleInObj.DOT" disabled class="form-control" />
+            </div>
+
+            <!--  ============================== reset filter button =========================  -->
+            <div class="col-3"></div>
+            <div class="col-4 text-sm-left">
+                <p>
+                    <input type="submit" value="Filter - Reset" asp-page-handler="FilterReset" class="btn-primary text-sm-center" style="width:160px" asp-route-id="@Model.SchedIncomingVM.ScheduleInObj.Id"
+                        asp-route-congId="@Model.SchedIncomingVM.ScheduleInObj.SpkCongNum" asp-route-spkId="@Model.SchedIncomingVM.ScheduleInObj.SpkNum" 
+                        asp-route-talkId="@Model.SchedIncomingVM.ScheduleInObj.SpkTalkNum">                      
+                </p>
+            </div>
+
+            <!-- <span asp-validation-for="ScheduleIn.DOT" class="text-danger"></span> -->
+        </div>
+
+
+        <!-- ********** Congregation ********** -->
+        <div class="form-group row">
+            <!-- Spk Congregation and CongNum (aka CongId) fields -->
+            <div class="col-2">
+                <label asp-for="SchedIncomingVM.ScheduleInObj.SpkCongName"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="SchedIncomingVM.ScheduleInObj.SpkCongNum" class="form-control"
+                        asp-items=ViewBag.CongId>
+                    <option value="">Select Congregation</option>
+                </select>
+            </div>
+
+            <div class="col-1"></div>
+            <div class="col-4 text-sm-left">
+                <p>
+                    <input type="submit" value="Filter - Congregation" asp-page-handler="GetCongNum" class="btn-primary text-sm-center" style="width:160px" 
+                           asp-route-id="@Model.SchedIncomingVM.ScheduleInObj.Id">
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- ********** Speaker **********-->
+        <div class="form-group row">
+            <!-- Speaker name fields -->
+            <div class="col-2">
+                <label asp-for="SchedIncomingVM.ScheduleInObj.SpkNum"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="SchedIncomingVM.ScheduleInObj.SpkNum" class="form-control"
+                        asp-items=ViewBag.SpkID>
+                    <option value="">Select Speaker</option>
+                </select>
+            </div>
+
+            <div class="col-1"></div>
+            <div class="col-4 text-sm-left">
+                <p>
+                    <input type="submit" value="Filter - Speaker" asp-page-handler="GetSpkNum" class="btn-primary text-sm-center" style="width:160px" 
+                           asp-route-id="@Model.SchedIncomingVM.ScheduleInObj.Id" asp-route-congId="@Model.SchedIncomingVM.ScheduleInObj.SpkCongNum">
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- ********** Talk **********-->
+        <div class="form-group row">
+            <!-- Talk name fields -->
+            <div class="col-2">
+                <label asp-for="SchedIncomingVM.ScheduleInObj.SpkTalkNum"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="SchedIncomingVM.ScheduleInObj.SpkTalkNum" class="form-control"
+                        asp-items=ViewBag.TalkId>
+                        <option value="">Select Talk #</option>
+                </select>
+            </div>
+        </div>
+
+
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_EditAndBackToListButton" />
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts
+    {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+            //Insert default item "Select" in dropdownlist on load
+            $(document).ready(function () {
+                var items = "<option value='0'>Select Speaker</option>";
+                $("#SchedIncomingVM.ScheduleInObj.SpkNum").html(items);
+            });
+                           
+    </script>
+
+
+
+}

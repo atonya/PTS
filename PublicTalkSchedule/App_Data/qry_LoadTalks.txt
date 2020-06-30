@@ -1,0 +1,199 @@
+1|How Well Do You Know God?|Faith / Spirituality
+2|Will You Be a Survivor of the Last Days?|Last Days / God's Judgement
+3|Serving With Jehovah's Unified Organization|Religion / Worship
+4|Evidence of God in the World Around Us|Bible / God
+5|Family Life That Warms the Heart|Family / Youth
+6|The Flood of Noah's Day Has Meaning for Us|Last Days / God's Judgement
+7|Mercy, a Dominant Quality of True Christians|Christian Standards / Qualities
+8|Living Not for Self but to Do God's Will|Religion / Worship
+9|Never Become Dull in Your Hearing|Faith / Spirituality
+10|Be Honest in All You Say and Do|Christian Standards / Qualities
+11|No Part of the World - In Imitation of Christ|World, No Part of
+12|Respect for Authority Is a Safeguard for You|Christian Standards / Qualities
+13|A Godly View of Sex and Marriage|Family / Youth
+14|A Clean People Honors Jehovah|Christian Standards / Qualities
+15|"Work What Is Good Toward All"|Christian Standards / Qualities
+16|Keep Growing in Your Relationship With God|Faith / Spirituality
+17|Glorifying God With All We Have|Evangelizing / Ministry
+18|Are you Really Making Jehovah Your Stronghold?|Faith / Spirituality
+19|Your Future - How Can It Be Known?|Kingdom / Paradise
+20|Is It Time for God to Rule the World?|Last Days / God's Judgement
+21|How Do You Fit Into The Kingdom Arrangement?|Kingdom / Paradise
+22|Are You Content With Jehovah's Provisions?|Faith / Spirituality
+23|Life Does Have a Purpose|Kingdom / Paradise
+24|What God's Rulership Can Do for Us|Kingdom / Paradise
+25|Resisting the Spirit of the World|World, No Part of
+26|Does God Count You Personally Important?|Bible / God
+27|Getting Marriage Off to a Good Start|Family / Youth
+28|Show Respect and Love in Your Marriage|Family / Youth
+29|Responsibilities and Rewards of Parenthood|Family / Youth
+30|Communication - Within the Family and With God|Family / Youth
+31|Happy Though Hungry - How Can It Be?|Faith / Spirituality
+32|Coping With Life's Anxieties|Trials / Problems
+33|What Is Behind the Spirit of Rebellion?|World, No Part of
+34|Are You Marked for Survival?|Last Days / God's Judgement
+35|Can You Live Forever? Will You?|Kingdom / Paradise
+36|Is This Life All There Is?|Religion / Worship
+37|Are God's Ways Really Benefical?|Kingdom / Paradise
+38|Act Wisely as the End Draws Near|Last Days / God's Judgement
+39|Be Confident of Divine Victory!|Faith / Spirituality
+40|What the Near Future Holds!|Last Days / God's Judgement
+41|Stand Still and See the Salvation of Jehovah|Last Days / God's Judgement
+42|How the Kingdom of God Affects You|Kingdom / Paradise
+43|Are You Doing What God Requires of You?|Religion / Worship
+44|Keep Seeking God's Kingdom|Kingdom / Paradise
+45|Follow the Way to Life|Religion / Worship
+46|Maintain Your Confidence Firm to the End|Faith / Spirituality
+47|"Have Faith in the Good News"|Kingdom / Paradise
+48|Meeting the Test of Christian Loyalty|Christian Standards / Qualities
+49|A Cleansed Earth - Will You Live to See It?|Kingdom / Paradise
+50|Decisions You Face - How Will You Make Them?|Trials / Problems
+51|Is the Truth Transforming Your Life?|World, No Part of
+52|Who Is Your God?|Religion / Worship
+53|Does Your Thinking Agree With God's|World, No Part of
+54|Build Your Faith in Man's Maker|Bible / God
+55|What Kind of Name Are You Making With God?|Religion / Worship
+56|Into the New World Under Christ's Leadership|Religion / Worship
+57|Bearing Up Under Persecution|Trials / Problems
+58|How Should You Serve God?|Religion / Worship
+59|You Will Reap What You Sow|World, No Part of
+60|How Purposeful Is Your Life?|Kingdom / Paradise
+61|On Whose Promises Do You Rely?|Kingdom / Paradise
+62|The Only Cure for Sick Mankind|Kingdom / Paradise
+63|Do You Have the Evangelizing Spirit?|Evangelizing / Ministry
+64|Lovers of Pleasure or Lovers of God?|World, No Part of
+65|How To Cultivate Peace In An Angry World|Evangelizing / Ministry
+66|Slave for the Master of the Harvest|Evangelizing / Ministry
+67|Taking Time to Meditate on Spiritual Things|Faith / Spirituality
+68|Do You Harbor Resentment, or Do You Forgive?|Christian Standards / Qualities
+69|Renewing the Spirit of Self-Sacrifice|Christian Standards / Qualities
+70|Make Jehovah Your Confidence|Faith / Spirituality
+71|How to Keep Spiritually Awake|Faith / Spirituality
+72|Love Identifies the True Christian Congregation|Christian Standards / Qualities
+73|Acquiring a Heart of Wisdom|Trials / Problems
+74|Jehovah's Eyes Are Upon Us|Faith / Spirituality
+75|Do You Recognize Jehovah's Sovereignty in Your Per|Kingdom / Paradise
+76|Bible Principles-Can They Help Us to Cope With Today's Problems?|Bible / God
+77|Follow the Course of Hospitality|Christian Standards / Qualities
+78|Serve Jehovah With a Joyful Heart|Christian Standards / Qualities
+79|Friendship With God, Friendship With the World - Which Will You Choose?|World, No Part of
+80||Bible / God
+81|Who Are Qualified as Ministers of God?|Evangelizing / Ministry
+82|Jehovah and Christ - Are They Part of a Trinity?|Religion / Worship
+83|Religion's Time of Judgment|Religion / Worship
+84|Will You Escape This World's Destiny?|Last Days / God's Judgement
+85|Good News in a Violent World|Kingdom / Paradise
+86|Prayers That Are Heard by God|Religion / Worship
+87|What Is Your Relationship With God?|Faith / Spirituality
+88|Why Live by Bible Standards?|Bible / God
+89|Come, You Who Thirst for the Truth|Religion / Worship
+90|Reach Out for the Real Life!|Kingdom / Paradise
+91|The Messiah's Presence and His Rule|Kingdom / Paradise
+92|Religion's Role in World Affairs|Religion / Worship
+93|"Acts of God" - How Do You View Them?|Last Days / God's Judgement
+94|True Religion Meets the Needs of Human Society|Religion / Worship
+95|The Bible's View of Spiritistic Practices|Religion / Worship
+96|False Religion's End Is Near|Religion / Worship
+97|Remaining Blameless Amid a Crooked Generation|World, No Part of
+98|"The Scene Of This World Is Changing"|World, No Part of
+99|Why You Can Trust the Bible|Bible / God
+100|True Friendship With God and Neighbor|Bible / God
+101|Jehovah - The Grand Creator|Bible / God
+102|Paying Attention to the Prophetic Word|Last Days / God's Judgement
+103|You Can Find Joy in Serving God|Christian Standards / Qualities
+104|Parents - Are You Building With Fire-Resistant Materials?|Family / Youth
+105|Gaining Comfort in All Our Tribulations|Trials / Problems
+106|Ruining the Earth Brings Divine Retribution|Last Days / God's Judgement
+107|Hold a Good Conscience in a Sinful World|World, No Part of
+108|Overcoming Fear of the Future|Last Days / God's Judgement
+109|The Kingdom of God Is Near|Kingdom / Paradise
+110|God Comes First in Successful Family Life|Family / Youth
+111|What Does the Healing of the Nations Accomplish?|Kingdom / Paradise
+112|How to Express Love in a Lawless World|Christian Standards / Qualities
+113|How Can Youths Cope With Today's Crisis?|Family / Youth
+114|Appreciating Marvels of God's Creation|Bible / God
+115|How to Protect Ourselves from Satan's Snares|World, No Part of
+116|Choose Your Associates Wisely!|World, No Part of
+117|How To Conquer Evil With Good|Trials / Problems
+118|Looking at Youths From Jehovah's Standpoint|Family / Youth
+119|Christian Separateness From the World - Why Benefical|World, No Part of
+120|Why Submit to God's Rulership Now|Kingdom / Paradise
+121|A Worldwide Brotherhood Saved From Calamity|Last Days / God's Judgement
+122|Global Peace - From What Source?|Kingdom / Paradise
+123|Why Christians Must Be Different|World, No Part of
+124|Basis for Confidence in the Bible's Divine Authorship|Bible / God
+125|Why Mankind Needs A Ransom|Religion / Worship
+126|Who Can Be Saved?|Religion / Worship
+127|What Happens When We Die?|Religion / Worship
+128|Is Hell Really a Place of Fiery Torment?|Religion / Worship
+129|Is the Trinity a Scriptural Teaching?|Religion / Worship
+130|The Earth Will Remain Forever|Kingdom / Paradise
+131|Is There Really a Devil?|World, No Part of
+132|The Resurrection - Victory Over Death!|Kingdom / Paradise
+133|The Origin of Humans - Does It Matter What You Believe?|Bible / God
+134|Should Christians Keep the Sabbath?|Religion / Worship
+135|The Sacredness of Life and Blood|Religion / Worship
+136|Does God Approve of the Use of Images in Worship?|Religion / Worship
+137|Did the Miracles of the Bible Really Happen?|Bible / God
+138|Live With Soundness of Mind in a Depraved World|World, No Part of
+139|Godly Wisdom in a Scientific World|Bible / God
+140|Jesus Christ - Earth's New Ruler|Kingdom / Paradise
+141|Human Creation's Groaning - When Will it End?|Trials / Problems
+142|Why Take Refuge in Jehovah|Trials / Problems
+143|Trust in the God of All Comfort|Trials / Problems
+144|A Loyal Congregation Under Christ's Leadership|Christian Standards / Qualities
+145|Who Is Like Jehovah Our God?|Bible / God
+146|Use Education to Praise Jehovah|Family / Youth
+147|Trust in Jehovah's Saving Power|Faith / Spirituality
+148|Do You Share God's View of Life?|Christian Standards / Qualities
+149|Are You Walking With God?|Faith / Spirituality
+150|How Real Is God to You?|Bible / God
+151|Jehovah Is "a Secure Height" for His People|Faith / Spirituality
+152|The Real Armageddon - Why? When?|Last Days / God's Judgement
+153|Keep Close in Mind the "Fear-Inspiring Day"!|Last Days / God's Judgement
+154|Human Rule - Weighed in the Balance|Kingdom / Paradise
+155|Has Babylon's Judgment Hour Arrived?|Religion / Worship
+156|Judgment Day - A Time of Fear or Hope?|Last Days / God's Judgement
+157|How True Christians Adorn Divine Teaching|Christian Standards / Qualities
+158|Be Courageous, and Trust in Jehovah|Faith / Spirituality
+159|Finding Security in a Dangerous World|Faith / Spirituality
+160|Safeguard Your Christian Identity!|World, No Part of
+161|Why Did Jesus Suffer and Die?|Religion / Worship
+162|Deliverance From a World of Darkness|Kingdom / Paradise
+163|Why Fear The True God?|Religion / Worship
+164|Is God Still In Control|Bible / God
+165|Who's Values Do You Cherish?|Christian Standards / Qualities
+166|Facing the Future With Faith and Courage|Faith / Spirituality
+167|Act Wisely In A Senseless World|World, No Part of
+168|You Can Build Faith In This Troubled World|Faith / Spirituality
+169|Why Be Guided By The Bible?|Bible / God
+170|Who is Qualified to Rule Mankind?|Kingdom / Paradise
+171|You Can Enjoy Life In Peace Now- and Forever|Christian Standards / Qualities
+172|What Is Your Standing With God?|Faith / Spirituality
+173|Is There A True Religion From God's Standpoint?|Religion / Worship
+174|God's New World - Who Will Qualify To Enter?|Kingdom / Paradise
+175|What Marks the Bible as Authentic?|Bible / God
+176|Real Peace and Security-When?|Last Days / God's Judgement
+177|Where Can You Get Help in Times of Distress|Trials / Problems
+178|Walk in the Way of Integrity|World, No Part of
+179|Reject Worldy Fantasies, Pursue Kingdom Realities|World, No Part of
+180|The Resurrection- Why that Hope Should be Real to You|Kingdom / Paradise
+181|Is It Later Than You Think?|Last Days / God's Judgement
+182|What God's Kingdom Is Doing for Us Now|Kingdom / Paradise
+183|Turn Your Eyes Away From Worthless Things!|World, No Part of
+184|Does Death End It All?|Trials / Problems
+185|Does The Truth Affect Your Like?|Christian Standards / Qualities
+186|United With God's Happy People|Trials / Problems
+187|Why Would A Loving God Permit Wickedness?|Bible / God
+188|Is Your Confidence in Jehovah?|Faith / Spirituality
+189|Walking With God Brings Blessings Now and Forever|Faith / Spirituality
+190| A Promise of Perfect Family Happiness|Bible / God
+191| How Love and Faith Conquer the World|World, No Part of
+192|Are You on the Road to Everlasting Life?|Faith / Spirituality
+193|Rescue From World Distress|Last Days / God's Judgement
+194|How Godly Wisdom Benefits Us|Christian Standards / Qualities
+1000|Circuit Overseer's Visit|Special Activity
+1001|Circuit Assembly|Special Activity
+1002|Annual Meeting|Special Activity
+1010|Convention Talk|Special Activity
+1500|Special Talk|Special Activity

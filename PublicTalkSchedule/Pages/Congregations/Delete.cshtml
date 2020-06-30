@@ -1,0 +1,69 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Congregations.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!-- ****************************** Delete Congregation Banner************************************** -->
+<br />
+<h2 class="text-info">Delete Service Type</h2>
+<h6 class="text-danger">******* Delete cannot be undone *******</h6>
+<br />
+
+<!-- ******************************************************************** -->
+<!-- banner and Delete Congregations -->
+<form method="post">
+    <!-- hidden column that is not updated. ID column is usually included here-->
+    <!-- <input asp-for="Congregation.Id" hidden /> NOT HIDDEN FOR NOW -->
+
+    <div class="border backgroundwhite">
+        <!-- hidden column that is not updated. ID column is usually included here-->
+        <!-- <input type="hidden" asp-for="Congregation.Id" />  -->
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Congregation.Id"></label>
+            </div>
+            <div class="col-5">
+                <!-- the Id (aka talknum) can be seen but not edited -->
+                <input asp-for="Congregation.Id" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Congregation.CongName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Congregation.CongName" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Congregation.tcLastName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Congregation.tcFirstName" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Congregation.tcMobilePhone"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Congregation.tcMobilePhone" class="form-control" />
+            </div>
+        </div>
+               
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_DeleteAndBackToListButton" />
+            </div>
+        </div>
+    </div>
+</form>
+

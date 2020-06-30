@@ -1,0 +1,190 @@
+﻿@page
+@model PublicTalkSchedule.Pages.Congregations.CreateModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<!-- *************** code used to display success message *************** -->
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+<!-- *************** code used to display error message *************** -->
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert alert-dismissible text-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aira-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.ErrorMessage
+    </div>
+}
+
+
+
+
+<!-- ****************************** Add Congregation Banner ****************************** -->
+<h3 class="text-info">Add a Congregation</h3>
+
+
+
+<!-- build form that allows creating new record-->
+<!-- display lables-->
+<form method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="border backgroundwhite">
+        <div class="form-group row font-weight-bold">
+            <!-- Id (aka CongNum), CircuitNum -->
+            <div class="col-3 offset-3">
+                <label asp-for="Congregation.Id"></label>
+                <input asp-for="Congregation.Id" class="form-control" />
+                <span asp-validation-for="Congregation.Id" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Congregation.CircuitNum"></label>
+                <input asp-for="Congregation.CircuitNum" class="form-control" />
+                <!--<span asp-validation-for="Congregation.CiruitNum" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- CongName, Mtg Day, Mtg Time -->
+            <div class="col-6 offset-1">
+                <label asp-for="Congregation.CongName"></label>
+                <input asp-for="Congregation.CongName" class="form-control" />
+                <span asp-validation-for="Congregation.CongName" class="text-danger"></span>
+            </div>
+
+            <!-- MtgDay -->
+            <div class="col-2">
+                <label asp-for="Congregation.MtgDay"></label>
+                <select asp-for=Congregation.MtgDay asp-items="Html.GetEnumSelectList<DayOfWeek>()" class="form-control">
+                    <option value="">Select DOW</option>
+                    <!-- <span asp-validation-for="Congregation.MtgDay" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+                </select>
+            </div>
+
+            <!-- MtgTime -->
+            <div class="col-2">
+                <label asp-for="Congregation.MtgTime"></label>
+                <input asp-for="Congregation.MtgTime" class="form-control" />
+                <!-- <span asp-validation-for="Congregation.MtgTime" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- khAddress, khCity, khPhone  -->
+            <div class="col-4 offset-1">
+                <label asp-for="Congregation.khAddress"></label>
+                <input asp-for="Congregation.khAddress" class="form-control" />
+                <!-- <span asp-validation-for="Congregation.khAddress" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+
+            <div class="col-3">
+                <label asp-for="Congregation.khCity"></label>
+                <input asp-for="Congregation.khCity" class="form-control" />
+                <!-- <span asp-validation-for="Congregation.khCity" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+
+            <div class="col-3">
+                <label asp-for="Congregation.khPhone"></label>
+                <input asp-for="Congregation.khPhone" class="form-control" , placeholder=" Valid Format: (###) ###-#### " />
+                <span asp-validation-for="Congregation.khPhone" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- tc_Lastname, tc_FirstName -->
+            <div class="col-5 offset-1">
+                <label asp-for="Congregation.tcLastName"></label>
+                <input asp-for="Congregation.tcLastName" class="form-control" />
+                <!-- <span asp-validation-for="Congregation.tcLastName" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+
+            <div class="col-5">
+                <label asp-for="Congregation.tcFirstName"></label>
+                <input asp-for="Congregation.tcFirstName" class="form-control" />
+                <!-- <span asp-validation-for="Congregation.tcFirstName" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- tcMobilePgone, tcHomePhone, tcEmail -->
+            <div class="col-3 offset-1">
+                <label asp-for="Congregation.tcMobilePhone"></label>
+                <input asp-for="Congregation.tcMobilePhone" class="form-control" , placeholder=" Valid Format: (###) ###-#### " />
+                <span asp-validation-for="Congregation.tcMobilePhone" class="text-danger"></span>
+            </div>
+
+            <div class="col-3">
+                <label asp-for="Congregation.tcHomePhone"></label>
+                <input asp-for="Congregation.tcHomePhone" class="form-control" , placeholder=" Valid Format: (###) ###-#### " />
+                <span asp-validation-for="Congregation.tcHomePhone" class="text-danger"></span>
+            </div>
+
+            <div class="col-4">
+                <label asp-for="Congregation.tcEmail"></label>
+                <input asp-for="Congregation.tcEmail" class="form-control" />
+                <!-- <span asp-validation-for="Congregation.tcEmail" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- cobe_LastName -->
+            <div class="col-5 offset-1">
+                <label asp-for="Congregation.cobeLastName"></label>
+                <input asp-for="Congregation.cobeLastName" class="form-control" />
+                <!-- <span asp-validation-for="Congregation.cobeLastName" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+
+            <div class="col-5">
+                <label asp-for="Congregation.cobeFirstName"></label>
+                <input asp-for="Congregation.cobeFirstName" class="form-control" />
+                <!-- <span asp-validation-for="Congregation.cobeFirstName" class="text-danger"></span>  VALIDATION NOT REQUIRED -->
+            </div>
+        </div>
+
+        <div class="form-group row font-weight-bold">
+            <!-- cobeMobilePhone, cobeHomePhone  -->
+            <div class="col-4 offset-2">
+                <label asp-for="Congregation.cobeMobilePhone"></label>
+                <input asp-for="Congregation.cobeMobilePhone" class="form-control" , placeholder=" Valid Format: (###) ###-#### " />
+                <span asp-validation-for="Congregation.cobeMobilePhone" class="text-danger"></span>
+            </div>
+
+            <div class="col-4">
+                <label asp-for="Congregation.cobeHomePhone"></label>
+                <input asp-for="Congregation.cobeHomePhone" class="form-control" , placeholder=" Valid Format: (###) ###-#### " />
+                <span asp-validation-for="Congregation.cobeHomePhone" class="text-danger"></span> 
+            </div>
+        </div>
+
+
+        <!-- add buttons-->
+        <div class="form-group row">
+            <div class="col-5 offset-3">
+                <partial name="_CreateAndBackToListButton" />
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

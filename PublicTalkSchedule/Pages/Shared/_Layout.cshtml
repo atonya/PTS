@@ -1,0 +1,143 @@
+﻿@using PublicTalkSchedule.Utility
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PublicTalkSchedule</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand text-success" asp-area="" asp-page="/Index">PTS</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-page="/Index">Home</a>
+                        </li>
+
+                        <!-- Schedule menu drop-down-->
+                        <li class="dropdown">
+                            @if (User.IsInRole(SD.AdminEndUser))
+                            {
+                                <a class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-
+                                   expanded="false">&nbsp; Schedule<span class="caret"></span></a>
+                                <ul class="dropdown-menu" style="background-color:lightgray" role="menu">
+                                    <li><a class="text-dark" asp-page="/TalksIncoming/Index">&nbsp; Incoming Talks</a></li>
+                                    <li><a class="text-dark" asp-page="/TalksOutgoing/Index">&nbsp; Outgoing Talks</a></li>
+                                </ul>
+                            }
+                        </li>
+
+                        <!-- Data menu drop-down-->
+                        <li class="dropdown">
+                            @if (User.IsInRole(SD.DataEntryEndUser) || User.IsInRole(SD.AdminEndUser))
+                            {
+                                <a class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-
+                                   expanded="false">&nbsp; Data<span class="caret"></span></a>
+                                <ul class="dropdown-menu" style="background-color:lightgray" role="menu">
+                                    @*<li><a href="#">Congregation</a></li>*@
+                                    <li><a class="text-dark" asp-page="/Congregations/Index">&nbsp; Congregation List</a></li>
+                                    <li><a class="text-dark" asp-page="/Speakers/Index">&nbsp; Speaker List</a></li>
+                                    <li><a class="text-dark" asp-page="/Talks/Index">&nbsp; Talk List</a></li>
+
+                                    @if (User.IsInRole(SD.AdminEndUser))
+                                    {
+                                        <li><a class="text-dark" asp-page="/Users/Index">&nbsp; Users List</a></li>
+                                    }
+                                </ul>
+                            }
+                        </li>
+
+
+
+                        <!-- Assignments - speakers can see their assigned talks-->
+                        @if (User.IsInRole(SD.SpeakerEndUser) || User.IsInRole(SD.AdminEndUser))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link " asp-page="/Assignments/Index">Assignment</a>
+                            </li>
+                        }
+
+
+
+
+                            <!-- Tools menue drop-down-->
+                            <li class="dropdown">
+                                @if (User.IsInRole(SD.AdminEndUser))
+                                {
+                                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-
+                                       expanded="false">&nbsp; Tools<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" style="background-color:lightgray" role="menu">
+                                        <li><a class="text-dark" asp-page="/TalksIncoming/Create">&nbsp; Initilize New Year</a></li>
+                                        <li><a href="#">Delete Year</a></li>
+                                        <li><a href="#">TBD_1</a></li>
+                                        <li><a class="text-dark" asp-page="/Tools/Load">&nbsp; Load Data Files</a></li>
+                                        <li><a class="text-dark" asp-page="/Tools/Export">&nbsp; Export Data Files</a></li>
+                                    </ul>
+                                }
+                            </li>
+
+                        </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer pl-3 text-white-50" style="background-color: #343a40">
+        <div class="container">
+            &copy; 2020 - PTS - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
